@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CadastroModule } from './cadastro/cadastro.module';
+import { Cadastro } from './cadastro/entities/cadastro.entity';
 
 @Module({
   imports: [
@@ -10,9 +12,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: 'root',
       database: 'db_rh',
-      entities: [],
+      entities: [Cadastro],
       synchronize: true,
+      logging: true,
     }),
+    CadastroModule,
   ],
   controllers: [],
   providers: [],
