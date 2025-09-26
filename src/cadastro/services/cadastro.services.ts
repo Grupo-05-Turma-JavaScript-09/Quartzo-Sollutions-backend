@@ -43,4 +43,18 @@ export class CadastroService {
     const funcionario = await this.findById(id);
     await this.cadastroRepository.remove(funcionario);
   }
+
+  async findByMatricula(matricula: string): Promise<Cadastro> {
+    const funcionario = await this.cadastroRepository.findOne({
+      where: { matricula },
+    });
+
+    if (!funcionario) {
+      throw new NotFoundException(
+        `Funcionário com matrícula ${matricula} não encontrado`,
+      );
+    }
+
+    return funcionario;
+  }
 }

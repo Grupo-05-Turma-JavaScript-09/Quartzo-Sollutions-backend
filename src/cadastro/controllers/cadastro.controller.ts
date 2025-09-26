@@ -25,6 +25,13 @@ export class CadastroController {
     return await this.cadastroService.findById(id);
   }
 
+  @Get('matricula/:matricula')
+  async findByMatricula(
+    @Param('matricula') matricula: string,
+  ): Promise<Cadastro> {
+    return await this.cadastroService.findByMatricula(matricula);
+  }
+
   @Post()
   async create(@Body() cadastro: Cadastro): Promise<Cadastro> {
     return await this.cadastroService.create(cadastro);
